@@ -50,12 +50,12 @@ const Ticket = ({ data }) => {
               </div>
             }
           />
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          {units === 'celsius' ? <Typography sx={{ mb: 1.5 }} color="text.secondary">
             {data.minC.Value}C - {data.maxC.Value}C
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          </Typography> : <Typography sx={{ mb: 1.5 }} color="text.secondary">
             {data.minF.Value}{data.minF.Unit} - {data.maxF.Value}{data.minF.Unit}
           </Typography>
+          }
           <Typography variant="body2">
             {data.ShortPhraseDay}
             <br />
