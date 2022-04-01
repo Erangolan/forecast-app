@@ -9,6 +9,7 @@ export const initialState = {
   status: 'idle',
   city: '',
   message: '',
+  cities: [],
   units: 'celsius',
 }
 
@@ -19,6 +20,7 @@ const Provider = ({ children }) => {
     wether: state.wether,
     status: state.status,
     city: state.city,
+    cities: state.cities,
     message: state.message,
     startAutoCompleteFetching: () => {
       dispatch({ type: actions.AUTOCOMPLETE_START })
