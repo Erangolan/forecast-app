@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
@@ -29,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Ticket = ({ data }) => {
+  const [units, setUnits] = useState('celsius')
+
+  const handleChange = (units) => {
+    setUnits(units)
+  }
 
   return (
     <Grid key={data.Key} item >
@@ -57,6 +62,9 @@ const Ticket = ({ data }) => {
               Hours os sun: {data.HoursOfSun}
           </Typography>
         </CardContent>
+        <CardActions>
+          <RadioButtons onChange={handleChange} />
+        </CardActions>
       </Card>
     </Grid>
   )
