@@ -1,25 +1,17 @@
-import logo from './logo.svg'
+/* eslint-disable no-unused-vars */
+import React from 'react'
 import './App.css'
+import Provider from './providers/Provider'
+import WeatherList from './hooks/WeatherList'
+import AutoComplete from './hooks/AutoComplete'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider className='provider'>
+      <div className='container'>
+        <AutoComplete />
+        <WeatherList />
+      </div>
+    </Provider>
   )
 }
-
-export default App
