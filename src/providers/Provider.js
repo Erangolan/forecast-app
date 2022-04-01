@@ -2,14 +2,13 @@
 import { createContext, useReducer } from 'react'
 import actions from '../actions'
 import reducer from '../reducers/reducer'
-export const TodoListContext = createContext()
+export const WeatherContext = createContext()
 
 export const initialState = {
   wether: [],
   status: 'idle',
   city: '',
   message: '',
-  cities: [],
   units: 'celsius',
 }
 
@@ -20,32 +19,22 @@ const Provider = ({ children }) => {
     wether: state.wether,
     status: state.status,
     city: state.city,
-    cities: state.cities,
     message: state.message,
-    startAutoCompleteFetching: () => {
-      dispatch({ type: actions.AUTOCOMPLETE_START })
-    },
-    autoCompleteSuccess: () => {
-      dispatch({ type: actions.AUTOCOMPLETE_SUCSSES })
-    },
-    autoCompleteFailes: () => {
-      dispatch({ type: actions.AUTOCOMPLETE_FAILED })
-    },
-    startForecastFetching: () => {
+    startFetching: () => {
       dispatch({ type: actions.FETCH_DATA_START })
     },
-    fetchForecastSuccess: () => {
-      dispatch({ type: actions.FETCH_DATA_SUCSSES })
+    fetchForecastSuccess: (wether, city) => {
+      dispatch({ type: actions.FETCH_FORECAST_SUCSSES, wether, city })
     },
-    fetchForecastFailed: () => {
-      dispatch({ type: actions.FETCH_DATA_FAILED })
+    fetchedFailed: (message) => {
+      dispatch({ type: actions.FETCH_DATA_FAILED, message })
     },
   }
 
   return (
-    <TodoListContext.Provider value={value}>
+    <WeatherContext.Provider value={value}>
       {children}
-    </TodoListContext.Provider>
+    </WeatherContext.Provider>
   )
 }
 

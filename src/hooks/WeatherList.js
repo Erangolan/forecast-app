@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react'
 import Grid from '@mui/material/Grid'
-import { TodoListContext } from '../providers/Provider'
+import { WeatherContext } from '../providers/Provider'
 import Msg from '../components/Msg'
 import Loader from '../components/Loader'
 import Ticket from '../components/Ticket'
 
 const WeatherList = () => {
-  const { wether, status, city, message } = useContext(TodoListContext)
+  const { wether, status, city, message } = useContext(WeatherContext)
 
   let render
   if (status === 'loading') {

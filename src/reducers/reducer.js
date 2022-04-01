@@ -2,12 +2,13 @@ import actions from '../actions'
 
 const reducer = (state, action) => {
   switch (action.type) {
-  case actions.AUTOCOMPLETE_START:
+  case actions.FETCH_DATA_START:
     return {
       ...state,
       status: 'loading',
     }
-  case actions.AUTOCOMPLETE_SUCSSES: {
+  case actions.FETCH_DATA_SUCSSES: {
+    console.log(action.city)
     return {
       ...state,
       status: 'succeeded',
@@ -15,27 +16,30 @@ const reducer = (state, action) => {
       wether: action.wether,
     }
   }
-  case actions.AUTOCOMPLETE_FAILED:
+  case actions.FETCH_DATA_FAILED:
     return {
       ...state,
       status: 'error',
       message: action.message,
     }
 
-  case actions.FETCH_DATA_START:
+  case actions.FETCH_FORECAST_SUCSSES:
     return {
       ...state,
-      status: 'loading',
+      status: 'succeeded',
+      wether: action.wether,
+      city: action.city,
     }
 
-  case actions.FETCH_DATA_SUCSSES: {
+  case actions.AUTOCOMPLETE_SUCSSES: {
+    console.log('weather: ', action.weather)
     return {
       ...state,
       status: 'succeeded',
       wether: action.weather,
     }
   }
-  case actions.FETCH_DATA_FAILED:
+  case actions.AUTOCOMPLETE_FAILED:
     return {
       ...state,
       status: 'error',

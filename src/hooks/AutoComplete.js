@@ -3,62 +3,57 @@ import React, { useMemo, useContext, useState } from 'react'
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 import { debounce } from 'lodash'
-import { TodoListContext } from '../providers/Provider'
+import { WeatherContext } from '../providers/Provider'
 import { fetchAutoComplete } from '../api/fetch-autocomplete'
 import { fetchForecast } from '../api/fetch-forecast'
 
 const AutoComplete = () => {
+  const [cities, setCities] = useState([])
   const [disable, setDisable] = useState(false)
   const {
-    cities,
-    startAutoCompleteFetching,
-    startForecastFetching,
+    startFetching,
+    fetchedFailed,
     fetchForecastSuccess,
-    autoCompleteSuccess,
-    autoCompleteFailes,
-    fetchForecastFailed,
-  } = useContext(TodoListContext)
+    city: providerCity
+  } = useContext(WeatherContext)
 
   const changeHandler = async (event) => {
     if (!event.target.value) {
       return
     }
-    startAutoCompleteFetching()
     const { cities, status, error } = await fetchAutoComplete(event.target.value)
     if (status !== 200) {
       console.log(error.toString())
-      autoCompleteFailes(error.toString())
+      fetchedFailed(error.toString())
       setDisable(true)
       return
-    } else {
-      autoCompleteSuccess(cities)
+    } else if (cities.length) {
+      setCities(cities)
     }
   }
 
   const debouncedChangeHandler = useMemo(() => debounce(changeHandler, 500), [])
 
   const fetch5DaysForecast = async (city) => {
-    startForecastFetching()
+    if (city === providerCity) {
+      return
+    }
+    startFetching()
     const { wether, status, error } = await fetchForecast(city)
     if (status !== 200) {
-      fetchForecastFailed(error)
+      fetchedFailed(error)
     }
     fetchForecastSuccess(wether, city)
   }
 
-  // useEffect(() => {
-
-  // }, [cities])
-
   return (
-    <><Autocomplete // to remove condition to fetch5DaysForecast
+    <><Autocomplete
       onChange={(_, newValue) => {
         if (newValue) {
           fetch5DaysForecast(newValue.LocalizedName)
         }
       }}
       clearOnBlur={true}
-      // disablePortal
       id="combo-box-demo"
       disabled={disable}
       options={cities || ''}
