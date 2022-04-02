@@ -11,7 +11,8 @@ import Paper from '@mui/material/Paper'
 import CardHeader from '@mui/material/CardHeader'
 import { blue } from '@mui/material/colors'
 import Avatar from '@mui/material/Avatar'
-import img from '../images/10d.png'
+import img2 from '../images/moon.png'
+import img1 from '../images/sunny.svg'
 import RadioButtons from './RadioButtons'
 import CardActions from '@mui/material/CardActions'
 import Button from '@mui/material/Button'
@@ -56,10 +57,11 @@ const Ticket = ({ data }) => {
             {data.id}
           </Typography>
           <CardHeader
-            avatar={<div style={{ width: '100%', margin: 'auto', }}>
-              <Avatar alt='' sx={{ bgcolor: blue[500] }} aria-label="weather-day" src={img} style={{ float: 'left' }} />
-              <Avatar alt='' sx={{ bgcolor: blue[500] }} aria-label="weather-night" src={img} style={{ float: 'left' }} />
-            </div>} />
+            avatar={
+              <div style={{ width: '100%', }}>
+                <Avatar alt='' sx={{ bgcolor: blue[500] }} aria-label="weather-day" src={img1} style={{ float: 'left', marginRight: 6 }} />
+                <Avatar alt='' sx={{ bgcolor: blue[500] }} aria-label="weather-night" src={img2} style={{ right: 0 }} />
+              </div>} />
           {units === 'celsius' ? <Typography sx={{ mb: 1.5 }} color="text.secondary">
             {data.minC.Value}C - {data.maxC.Value}C
           </Typography> : <Typography sx={{ mb: 1.5 }} color="text.secondary">
