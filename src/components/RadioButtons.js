@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { useState } from 'react'
+import * as React from 'react'
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
 
-export default function RadioButtons ({ onChange }) {
-  const [value, setValue] = useState('celsius')
+export default function RowRadioButtonsGroup({ onChange }) {
+  const [value, setValue] = React.useState('celsius')
 
   const handleChange = (event) => {
     setValue(event.target.value)
@@ -14,7 +15,7 @@ export default function RadioButtons ({ onChange }) {
   }
 
   return (
-    <FormControl>
+    <FormControl >
       <RadioGroup
         row
         aria-labelledby="demo-controlled-radio-buttons-group"
@@ -23,7 +24,7 @@ export default function RadioButtons ({ onChange }) {
         onChange={handleChange}
       >
         <FormControlLabel value="celsius" control={<Radio />} label="Cel" />
-        <FormControlLabel value="fahrenheit" control={<Radio />} label="Fahr" />
+        <FormControlLabel size="small" value="fahrenheit" control={<Radio />} label="Fahr" />
       </RadioGroup>
     </FormControl>
   )

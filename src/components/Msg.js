@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Msg ({ message }) {
   const classes = useStyles()
+
   return (
     <div className={classes.root}>
       <h2> {message} </h2>

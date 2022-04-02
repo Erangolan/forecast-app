@@ -4,6 +4,7 @@ import './App.css'
 import Provider from './providers/Provider'
 import WeatherList from './hooks/WeatherList'
 import AutoComplete from './hooks/AutoComplete'
+import background3 from './images/background.jpg'
 
 export default function App() {
   return (

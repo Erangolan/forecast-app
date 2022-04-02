@@ -19,7 +19,7 @@ export const fetchForecast = async (locationName) => {
     }
   } catch(err) {
     return {
-      cities: [],
+      wether: [],
       status: 500,
       error: err,
     }

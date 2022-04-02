@@ -1,22 +1,47 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@mui/material/Grid'
-import { WeatherContext } from '../providers/Provider'
-import Msg from '../components/Msg'
 import Loader from '../components/Loader'
+import Msg from '../components/Msg'
+
+import { WetherContext } from '../providers/Provider'
 import Ticket from '../components/Ticket'
 
+const useStyles = makeStyles((theme) => ({
+  loader: {
+    margin: 'auto',
+    alignContent: 'center',
+    alignItems: 'center'
+  },
+  title: {
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    fontSize: 60
+  },
+  message: {
+    margin: 'auto',
+    alignContent: 'center',
+    alignItems: 'center'
+  }
+}))
+
 const WeatherList = () => {
-  const { wether, status, city, message } = useContext(WeatherContext)
+  const classes = useStyles()
+  const { wether, status, city, message } = useContext(WetherContext)
+
+  useEffect(() => {
+    console.log('message: ', message)
+  }, [city])
 
   let render
   if (status === 'loading') {
-    render = <Loader />
+    render = <Loader className={classes.loader} />
   } else if (status === 'succeeded') {
     render = (
       <>
-        <h1>{city}</h1>
-        <Grid sx={{ flexGrow: 1, margin: 'auto' }} container spacing={2}>
+        <h1 className={classes.title}>{city}</h1>
+        <Grid sx={{ flexGrow: 1, padding: 2 }} container spacing={2}>
           <Grid item xs={12}>
             <Grid container justifyContent="center" spacing={2}>
               { wether.map((item, i) => <Ticket data={item} key={i} />) }
@@ -26,9 +51,13 @@ const WeatherList = () => {
       </>
     )
   } else if (status === 'error') {
-    render = <Grid sx={{ margin: 'auto', alignContent: 'center', alignItems: 'center' }} container spacing={2}><Msg message={message} /></Grid>
+    render = <Grid className={classes.message} container spacing={2}>
+      <Msg message={message} />
+    </Grid>
   } else if (status === 'idle') {
-    render = <Grid sx={{ margin: 'auto', alignContent: 'center', alignItems: 'center' }}><Msg message="Welcome!" /></Grid>
+    render = <Grid className={classes.message}>
+      <Msg message="Welcome!" />
+    </Grid>
   }
 
   return render

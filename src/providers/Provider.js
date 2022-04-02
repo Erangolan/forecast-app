@@ -2,7 +2,7 @@
 import { createContext, useReducer } from 'react'
 import actions from '../actions'
 import reducer from '../reducers/reducer'
-export const WeatherContext = createContext()
+export const WetherContext = createContext()
 
 export const initialState = {
   wether: [],
@@ -32,9 +32,9 @@ const Provider = ({ children }) => {
   }
 
   return (
-    <WeatherContext.Provider value={value}>
+    <WetherContext.Provider value={value}>
       {children}
-    </WeatherContext.Provider>
+    </WetherContext.Provider>
   )
 }
 

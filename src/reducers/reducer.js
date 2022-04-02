@@ -32,7 +32,6 @@ const reducer = (state, action) => {
     }
 
   case actions.AUTOCOMPLETE_SUCSSES: {
-    console.log('weather: ', action.weather)
     return {
       ...state,
       status: 'succeeded',
