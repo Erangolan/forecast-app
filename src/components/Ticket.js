@@ -1,39 +1,25 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
-import { experimentalStyled as styled } from '@mui/material/styles'
-import Paper from '@mui/material/Paper'
-import CardHeader from '@mui/material/CardHeader'
+import { Grid,
+  Card,
+  CardContent,
+  Typography,
+  CardHeader,
+  CardActions,
+  Avatar
+} from '@mui/material'
 import { blue } from '@mui/material/colors'
-import Avatar from '@mui/material/Avatar'
 import img2 from '../images/moon.png'
 import img1 from '../images/sunny.svg'
 import RadioButtons from './RadioButtons'
-import CardActions from '@mui/material/CardActions'
-import Button from '@mui/material/Button'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-    marginTop: '2%',
-  },
+const useStyles = makeStyles(() => ({
   buttons: {
     backgroundColor: '#00000014',
     height: 50,
     padding: 20,
     marginTop: -50,
-  },
-  icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
   },
 }))
 
@@ -45,12 +31,8 @@ const Ticket = ({ data }) => {
     setUnits(units)
   }
 
-  useEffect(() => {
-    // console.log(units)
-  }, [units])
-
   return (
-    <><Grid key={data.Key} item>
+    <Grid key={data.Key} item>
       <Card sx={{ height: 270, width: 200, justifyContent: 'center' }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -77,7 +59,7 @@ const Ticket = ({ data }) => {
       <CardActions className={classes.buttons}>
         <RadioButtons onChange={handleChange} />
       </CardActions>
-    </Grid></>
+    </Grid>
   )
 }
 

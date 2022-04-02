@@ -16,11 +16,6 @@ const useStyles = makeStyles(() => ({
     left: '50%',
     transform: 'translate(-50%, -50%)'
   },
-  message: {
-    margin: 'auto',
-    alignContent: 'center',
-    alignItems: 'center'
-  }
 }))
 
 export default function Loader() {
