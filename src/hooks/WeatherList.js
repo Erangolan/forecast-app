@@ -15,9 +15,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
   title: {
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    fontSize: 60
+    textAlign: 'center',
+    diplay: 'block',
+    fontSize: 'xxx-large'
   },
   message: {
     margin: 'auto',

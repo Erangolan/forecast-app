@@ -4,18 +4,14 @@ export const fetchForecast = async (locationName) => {
   try {
     const res = await fetch(`${consts.SERVICE_URL}/api/fetch-forecast?locationName=${locationName}`)
 
-    const { status } = res
-    if (status !== 200) {
-      const { message } = await res.json()
+    const { data = {}, message = {} } = await res.json()
+    if (res.status !== 200) {
       throw new Error(message)
     }
 
-    const { data } = await res.json()
-    console.log('content in fetchForecast: ', data)
-
     return {
       wether: data,
-      status,
+      status: res.status,
       error: '',
     }
   } catch(err) {
