@@ -53,6 +53,7 @@ const AutoComplete = () => {
       id="combo-box-demo"
       disabled={disable}
       options={cities || ''}
+      filterOptions={(options) => [...new Set(options)]}
       isOptionEqualToValue={(option, value) => option.Key === value.Key}
       getOptionLabel={option => (option ? option.LocalizedName : '')}
       renderOption={(props, option) => {
