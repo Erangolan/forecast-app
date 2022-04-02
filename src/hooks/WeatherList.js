@@ -36,7 +36,7 @@ const WeatherList = () => {
 
   let render
   if (status === 'loading') {
-    render = <Loader className={classes.loader} />
+    render = <Loader />
   } else if (status === 'succeeded') {
     render = (
       <>
