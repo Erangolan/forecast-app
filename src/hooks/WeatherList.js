@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@mui/material/Grid'
 import Loader from '../components/Loader'
@@ -8,19 +8,13 @@ import Msg from '../components/Msg'
 import { WetherContext } from '../providers/Provider'
 import Ticket from '../components/Ticket'
 
-const useStyles = makeStyles((theme) => ({
-  loader: {
-    margin: 'auto',
-    alignContent: 'center',
-    alignItems: 'center'
-  },
+const useStyles = makeStyles(() => ({
   title: {
     textAlign: 'center',
     diplay: 'block',
     fontSize: 'xxx-large'
   },
   message: {
-    // margin: 'auto',
     alignContent: 'center',
     alignItems: 'center'
   }
