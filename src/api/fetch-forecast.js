@@ -1,7 +1,8 @@
+import consts from '../consts'
 
 export const fetchForecast = async (locationName) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/fetch-forecast?locationName=${locationName}`)
+    const res = await fetch(`${consts.SERVICE_URL}/api/fetch-forecast?locationName=${locationName}`)
 
     const { status } = res
     if (status !== 200) {
