@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 'xxx-large'
   },
   message: {
-    margin: 'auto',
+    // margin: 'auto',
     alignContent: 'center',
     alignItems: 'center'
   }
@@ -29,10 +29,6 @@ const useStyles = makeStyles((theme) => ({
 const WeatherList = () => {
   const classes = useStyles()
   const { wether, status, city, message } = useContext(WetherContext)
-
-  useEffect(() => {
-    console.log('message: ', message)
-  }, [city])
 
   let render
   if (status === 'loading') {

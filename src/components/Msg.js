@@ -4,8 +4,6 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginRight: 'auto',
-    marginLeft: 'auto',
     padding: '2rem 3rem',
     textAlign: 'center',
     fontSize: 'xxx-large'

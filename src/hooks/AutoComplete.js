@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useMemo, useContext, useState } from 'react'
+import React, { useMemo, useContext, useState } from 'react'
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 import { debounce } from 'lodash'
@@ -10,21 +10,25 @@ import { fetchForecast } from '../api/fetch-forecast'
 const AutoComplete = () => {
   const [cities, setCities] = useState([])
   const [disable, setDisable] = useState(false)
-  const { startFetching, fetchedFailed, fetchForecastSuccess, city: providerCity } = useContext(WetherContext)
+  const {
+    startFetching,
+    fetchedFailed,
+    fetchForecastSuccess,
+    city: providerCity
+  } = useContext(WetherContext)
 
   const changeHandler = async (event) => {
     if (!event.target.value) {
       return
     }
     const { cities, status, error } = await fetchAutoComplete(event.target.value)
-    console.log('cities: ', cities)
     if (status !== 200) {
       console.log(error.toString())
       fetchedFailed(error.toString())
       setDisable(true)
       return
     }
-    setCities(cities)
+    setCities([...new Set(cities)])
   }
 
   const debouncedChangeHandler = useMemo(() => debounce(changeHandler, 500), [])
@@ -33,29 +37,18 @@ const AutoComplete = () => {
     if (city === providerCity) {
       return
     }
-    console.log('city: ', city)
     startFetching()
     const { wether, status, error } = await fetchForecast(city)
-    console.log('wether: ', wether)
-    console.log('status: ', status)
-    console.log('error: ', error)
     if (status !== 200) {
-      fetchedFailed(error)
+      fetchedFailed(error.toString())
+    } else {
+      fetchForecastSuccess(wether, city)
     }
-    fetchForecastSuccess(wether, city)
   }
 
-  useEffect(() => {
-
-  }, [cities])
-
   return (
-    <><Autocomplete // to remove condition to fetch5DaysForecast
-      onChange={(_, newValue) => {
-        if (newValue) {
-          fetch5DaysForecast(newValue.LocalizedName)
-        }
-      }}
+    <Autocomplete
+      onChange={(_, newValue) => newValue ? fetch5DaysForecast(newValue.LocalizedName) : null}
       clearOnBlur={false}
       id="combo-box-demo"
       disabled={disable}
@@ -71,7 +64,8 @@ const AutoComplete = () => {
       }}
       sx={{ padding: 2 }}
       renderInput={(params) => <TextField {...params} label="City" />}
-      onInputChange={debouncedChangeHandler} /></>
+      onInputChange={debouncedChangeHandler}
+    />
   )
 }
 

@@ -80,34 +80,3 @@ const Ticket = ({ data }) => {
 }
 
 export default Ticket
-
-/**return (
-    <Grid key={value.id} item>
-      <Card sx={{ minWidth: 275 }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {value.id}
-          </Typography>
-          <CardHeader
-            avatar={
-              <Avatar sx={{ bgcolor: blue[500] }} aria-label="weather">
-                    R
-              </Avatar>
-            }
-          />
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {value.minF.Value}{value.minF.Unit} - {value.maxF.Value}{value.minF.Unit}
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {value.minC.Value}C - {value.maxC.Value}C
-          </Typography>
-          <Typography variant="body2">
-            {value.ShortPhraseDay}
-            <br />
-                  Hours os sun: {value.HoursOfSun}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Grid>
-
-  ) */
